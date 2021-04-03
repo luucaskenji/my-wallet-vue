@@ -1,12 +1,29 @@
 <template>
-  <Container v-if="showLoginForm">
+  <Container>
     <h1>My Wallet</h1>
-    <form>
+    <form v-if="showLoginForm">
       <input type='email' placeholder='E-mail'>
       <input type='password' placeholder='Senha'>
 
       <button type="submit">Entrar</button>
     </form>
+
+    <form v-else>
+      <input type='text' placeholder='Nome'>
+      <input type='email' placeholder='E-mail'>
+      <input type='password' placeholder='Senha'>
+      <input type='password' placeholder='Confirme sua senha'>
+
+      <button type="submit">Criar conta</button>
+    </form>
+
+    <span @click="switchFormType()">
+      {{
+        showLoginForm
+          ? 'Primeira vez aqui? Crie sua conta!'
+          : 'Já possui uma conta? Faça seu login'
+      }}
+    </span>
   </Container>
 </template>
 
@@ -23,6 +40,11 @@ export default defineComponent({
     return {
       showLoginForm: true,
     };
+  },
+  methods: {
+    switchFormType() {
+      this.showLoginForm = !this.showLoginForm;
+    },
   },
 });
 </script>
@@ -53,8 +75,17 @@ export default defineComponent({
   button {
     color: white;
     height: 60px;
-    background: #A86CD6;
+    background: #A328D6;
     border-radius: 6px;
     font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
+
+  span {
+    color: white;
+    text-decoration: underline;
+    font-size: 0.5rem;
+    cursor: pointer;
   }
 </style>
