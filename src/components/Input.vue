@@ -18,7 +18,7 @@ export default defineComponent({
   input {
     width: 100%;
     height: 60px;
-    margin-bottom: 16px;
+    margin-bottom: 12px;
     font-size: 1rem;
     border-radius: 6px;
     padding-left: 10px;

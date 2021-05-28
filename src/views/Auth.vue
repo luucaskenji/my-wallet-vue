@@ -2,17 +2,20 @@
   <Container>
     <h1>My Wallet</h1>
     <form v-if='showLoginForm'>
-      <Input type='email' placeholder='E-mail' />
-      <Input type='password' placeholder='Senha' />
+      <Input v-model='email' type='email' placeholder='E-mail'/>
+      <Input v-model='password' type='password' placeholder='Senha'/>
 
       <button type='submit'>Entrar</button>
     </form>
 
     <form v-else>
-      <Input type='text' placeholder='Nome' />
-      <Input type='email' placeholder='E-mail' />
-      <Input type='password' placeholder='Senha' />
-      <Input type='password' placeholder='Confirme sua senha' />
+      <div class="sign-up-inputs">
+        <Input class="firstName" type='text' placeholder='Primeiro nome'/>
+        <Input class="lastName" type='text' placeholder='Último nome'/>
+        <Input class="email" v-model='email' type='email' placeholder='E-mail'/>
+        <Input class="password" v-model='password' type='password' placeholder='Senha'/>
+        <Input class="confirmPassword" type='password' placeholder='Confirme sua senha'/>
+      </div>
 
       <button type='submit'>Criar conta</button>
     </form>
@@ -29,6 +32,11 @@ import { Container, Input } from '@/components';
 
 interface Data {
   showLoginForm: boolean;
+  email: string;
+  firstName: string;
+  lastName: string;
+  password: string;
+  passwordConfirmation: string;
 }
 
 export default defineComponent({
@@ -40,6 +48,11 @@ export default defineComponent({
   data(): Data {
     return {
       showLoginForm: true,
+      email: '',
+      firstName: '',
+      lastName: '',
+      password: '',
+      passwordConfirmation: '',
     };
   },
   computed: {
@@ -66,8 +79,24 @@ export default defineComponent({
   form {
     display: flex;
     flex-direction: column;
-    width: 220px;
+    width: 300px;
   }
+
+  .sign-up-inputs {
+    display: grid;
+    grid-template-areas:
+      'input1 input1'
+      'input2 input3'
+      'input4 input4'
+      'input5 input5';
+    column-gap: 7px;
+  }
+
+  .email { grid-area: input1; }
+  .firstName { grid-area: input2; }
+  .lastName { grid-area: input3; }
+  .password { grid-area: input4; }
+  .confirmPassword { grid-area: input5; }
 
   button {
     color: white;
