@@ -1,0 +1,11 @@
+{
+  "defaultSeverity": "warning",
+  "linterOptions": {
+    "exclude": [
+      "node_modules/**"
+    ]
+  },
+  "rules": {
+    "no-empty-interface": false
+  }
+}
