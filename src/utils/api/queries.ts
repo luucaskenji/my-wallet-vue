@@ -10,7 +10,7 @@ export type UserInput = {
 }
 
 export const createUserAccount = gql`
-  mutation createUser(input: UserInput!) {
+  mutation createUser($input: UserInput!) {
     createUser(input: $input) {
       id
     }
