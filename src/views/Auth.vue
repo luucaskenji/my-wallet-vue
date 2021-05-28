@@ -72,7 +72,7 @@ export default defineComponent({
   button {
     color: white;
     height: 60px;
-    background: #A328D6;
+    background: var(--lightPurple);
     border-radius: 6px;
     font-size: 1rem;
     cursor: pointer;
