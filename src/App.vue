@@ -71,11 +71,11 @@ button, button:active {
   border: none;
 }
 html {
-  font-size: 26px;
+  font-size: 28px;
 }
 @media (max-width: 700px) {
   html {
-    font-size: 26px;
+    font-size: 22px;
   }
 }
 * {

@@ -1,11 +1,11 @@
 <template>
   <Container>
     <h1>My Wallet</h1>
-    <form v-if="showLoginForm">
+    <form v-if='showLoginForm'>
       <input type='email' placeholder='E-mail'>
       <input type='password' placeholder='Senha'>
 
-      <button type="submit">Entrar</button>
+      <button type='submit'>Entrar</button>
     </form>
 
     <form v-else>
@@ -14,10 +14,10 @@
       <input type='password' placeholder='Senha'>
       <input type='password' placeholder='Confirme sua senha'>
 
-      <button type="submit">Criar conta</button>
+      <button type='submit'>Criar conta</button>
     </form>
 
-    <span @click="switchFormType()">
+    <span @click='switchFormType()'>
       {{
         showLoginForm
           ? 'Primeira vez aqui? Crie sua conta!'
