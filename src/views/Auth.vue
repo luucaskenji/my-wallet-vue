@@ -2,47 +2,53 @@
   <Container>
     <h1>My Wallet</h1>
     <form v-if='showLoginForm'>
-      <input type='email' placeholder='E-mail'>
-      <input type='password' placeholder='Senha'>
+      <Input type='email' placeholder='E-mail' />
+      <Input type='password' placeholder='Senha' />
 
       <button type='submit'>Entrar</button>
     </form>
 
     <form v-else>
-      <input type='text' placeholder='Nome'>
-      <input type='email' placeholder='E-mail'>
-      <input type='password' placeholder='Senha'>
-      <input type='password' placeholder='Confirme sua senha'>
+      <Input type='text' placeholder='Nome' />
+      <Input type='email' placeholder='E-mail' />
+      <Input type='password' placeholder='Senha' />
+      <Input type='password' placeholder='Confirme sua senha' />
 
       <button type='submit'>Criar conta</button>
     </form>
 
     <span @click='switchFormType()'>
-      {{
-        showLoginForm
-          ? 'Primeira vez aqui? Crie sua conta!'
-          : 'Já possui uma conta? Faça seu login'
-      }}
+      {{ formSwitcher }}
     </span>
   </Container>
 </template>
 
 <script lang='ts'>
 import { defineComponent } from 'vue';
-import Container from '../components/Container.vue';
+import { Container, Input } from '@/components';
+
+interface Data {
+  showLoginForm: boolean;
+}
 
 export default defineComponent({
   name: 'Auth',
   components: {
     Container,
+    Input,
   },
-  data() {
+  data(): Data {
     return {
       showLoginForm: true,
     };
   },
+  computed: {
+    formSwitcher(): string {
+      return this.showLoginForm ? 'Primeira vez aqui? Crie sua conta!' : 'Já possui uma conta? Faça seu login';
+    },
+  },
   methods: {
-    switchFormType() {
+    switchFormType(): void {
       this.showLoginForm = !this.showLoginForm;
     },
   },
@@ -63,15 +69,6 @@ export default defineComponent({
     width: 220px;
   }
 
-  input {
-    width: 100%;
-    height: 60px;
-    margin-bottom: 16px;
-    font-size: 1rem;
-    border-radius: 6px;
-    padding-left: 10px;
-  }
-
   button {
     color: white;
     height: 60px;
@@ -79,13 +76,13 @@ export default defineComponent({
     border-radius: 6px;
     font-size: 1rem;
     cursor: pointer;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
   }
 
   span {
     color: white;
     text-decoration: underline;
-    font-size: 0.5rem;
+    font-size: 0.6rem;
     cursor: pointer;
   }
 </style>
