@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-import { gql } from '@apollo/client';
+import { gql } from '@apollo/client/core';
 
 export type UserInput = {
   email: string;

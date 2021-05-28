@@ -1,15 +1,16 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */ // Needed for queries returns
+// Needed for queries returns
+/* eslint-disable @typescript-eslint/no-explicit-any */
 
 import {
   ApolloClient,
   DocumentNode,
   InMemoryCache,
   NormalizedCacheObject,
-} from '@apollo/client';
+} from '@apollo/client/core';
 
 const client = new ApolloClient<NormalizedCacheObject>({
   cache: new InMemoryCache(),
-  uri: 'localhost:4000/graphql',
+  uri: 'http://localhost:4000/graphql',
 });
 
 export async function APIQuery(
