@@ -8,13 +8,18 @@
       <button type='submit'>Entrar</button>
     </form>
 
-    <form v-else>
+    <form v-else @submit="signUp()">
       <div class="sign-up-inputs">
-        <Input class="firstName" type='text' placeholder='Primeiro nome'/>
-        <Input class="lastName" type='text' placeholder='Último nome'/>
         <Input class="email" v-model='email' type='email' placeholder='E-mail'/>
+        <Input class="firstName" v-model='firstName' type='text' placeholder='Primeiro nome'/>
+        <Input class="lastName" v-model='lastName' type='text' placeholder='Último nome'/>
         <Input class="password" v-model='password' type='password' placeholder='Senha'/>
-        <Input class="confirmPassword" type='password' placeholder='Confirme sua senha'/>
+        <Input
+          class="confirmPassword"
+          v-model='passwordConfirmation'
+          type='password'
+          placeholder='Confirme sua senha'
+        />
       </div>
 
       <button type='submit'>Criar conta</button>
@@ -63,6 +68,9 @@ export default defineComponent({
   methods: {
     switchFormType(): void {
       this.showLoginForm = !this.showLoginForm;
+    },
+    signUp() {
+      console.log(this.email);
     },
   },
 });

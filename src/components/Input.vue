@@ -1,5 +1,10 @@
 <template>
-  <input :type="type" :placeholder="placeholder" />
+  <input
+    :type='type'
+    :placeholder='placeholder'
+    :value='modelValue'
+    @input='$emit(`update:modelValue`, $event.target.value)'
+  />
 </template>
 
 <script>
@@ -10,7 +15,9 @@ export default defineComponent({
   props: {
     type: String,
     placeholder: String,
+    modelValue: String,
   },
+  emits: ['update:modelValue'],
 });
 </script>
 
@@ -18,7 +25,7 @@ export default defineComponent({
   input {
     width: 100%;
     height: 60px;
-    margin-bottom: 12px;
+    margin-bottom: 10px;
     font-size: 1rem;
     border-radius: 6px;
     padding-left: 10px;
