@@ -5,7 +5,7 @@ interface UserInfo {
   email: string;
 }
 
-interface UserState {
+export interface UserState {
   user: UserInfo | null;
   accessToken: string;
 }
