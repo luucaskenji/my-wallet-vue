@@ -6,6 +6,7 @@
 :root {
   --purple: #8C11BE;
   --lightPurple: #A328D6;
+  --auth-forms-width: 300px;
 }
 
 #app {

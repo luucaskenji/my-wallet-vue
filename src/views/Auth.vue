@@ -168,7 +168,7 @@ export default defineComponent({
   }
 
   .errors {
-    width: 300px;
+    width: var(--auth-forms-width);
     height: fit-content;
     background: white;
     margin-bottom: 22px;
@@ -186,7 +186,7 @@ export default defineComponent({
   form {
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: var(--auth-forms-width);
   }
 
   .sign-up-inputs {
