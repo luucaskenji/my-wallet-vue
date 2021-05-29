@@ -2,51 +2,51 @@
   <Container>
     <h1>My Wallet</h1>
 
-    <ul v-if="errors.length" class="errors">
-      <li v-for="error, index in errors" :key="index">{{ error }}</li>
+    <ul v-if='errors.length' class='errors'>
+      <li v-for='error, index in errors' :key='index'>{{ error }}</li>
     </ul>
 
     <form v-if='showLoginForm'>
-      <Input v-model='email' type='email' placeholder='E-mail' autocomplete="on"/>
-      <Input v-model='password' type='password' placeholder='Senha' autocomplete="on"/>
+      <Input v-model='email' type='email' placeholder='E-mail' autocomplete='on'/>
+      <Input v-model='password' type='password' placeholder='Senha' autocomplete='on'/>
 
       <button type='submit'>Entrar</button>
     </form>
 
-    <form v-else @submit="signUp($event)">
-      <div class="sign-up-inputs">
-        <Input class="email" v-model='email' type='email' placeholder='E-mail' autocomplete="on"/>
+    <form v-else @submit='signUp($event)'>
+      <div class='sign-up-inputs'>
+        <Input class='email' v-model.trim='email' type='email' placeholder='E-mail' autocomplete='on'/>
 
         <Input
-          class="firstName"
-          v-model='firstName'
+          class='firstName'
+          v-model.trim='firstName'
           type='text'
           placeholder='Primeiro nome'
-          autocomplete="on"
+          autocomplete='on'
         />
 
         <Input
-          class="lastName"
-          v-model='lastName'
+          class='lastName'
+          v-model.trim='lastName'
           type='text'
           placeholder='Último nome'
-          autocomplete="on"
+          autocomplete='on'
          />
 
         <Input
-          class="password"
-          v-model='password'
+          class='password'
+          v-model.trim='password'
           type='password'
           placeholder='Senha'
-          autocomplete="on"
+          autocomplete='on'
         />
 
         <Input
-          class="confirmPassword"
-          v-model='passwordConfirmation'
+          class='confirmPassword'
+          v-model.trim='passwordConfirmation'
           type='password'
           placeholder='Confirme sua senha'
-          autocomplete="on"
+          autocomplete='on'
         />
       </div>
 
@@ -104,6 +104,7 @@ export default defineComponent({
     },
     async signUp(event: Event): Promise<void> {
       event.preventDefault();
+      console.log(this.firstName);
       this.verifyErrors();
 
       if (this.isLoading || this.errors.length) return;
