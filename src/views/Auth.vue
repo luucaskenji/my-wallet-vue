@@ -1,6 +1,11 @@
 <template>
   <Container>
     <h1>My Wallet</h1>
+
+    <ul class="errors">
+      <li>O nome precisa ser válido</li>
+    </ul>
+
     <form v-if='showLoginForm'>
       <Input v-model='email' type='email' placeholder='E-mail'/>
       <Input v-model='password' type='password' placeholder='Senha'/>
@@ -26,7 +31,7 @@
     </form>
 
     <span @click='switchFormType()'>
-      {{ formSwitcher }}
+      {{ formSwitchMessage }}
     </span>
   </Container>
 </template>
@@ -63,7 +68,7 @@ export default defineComponent({
     };
   },
   computed: {
-    formSwitcher(): string {
+    formSwitchMessage(): string {
       return this.showLoginForm ? 'Primeira vez aqui? Crie sua conta!' : 'Já possui uma conta? Faça seu login';
     },
   },
@@ -99,6 +104,21 @@ export default defineComponent({
     font-family: 'Teko', sans-serif;
     font-size: 1.8rem;
     margin-bottom: 22px;
+  }
+
+  .errors {
+    width: 300px;
+    height: 150px;
+    background: white;
+    margin-bottom: 22px;
+    border-radius: 7px;
+    border: 2px solid red;
+    padding: 15px;
+  }
+
+  .errors li {
+    color: red;
+    font-size: 0.5rem;
   }
 
   form {
