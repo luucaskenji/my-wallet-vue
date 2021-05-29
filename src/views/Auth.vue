@@ -15,7 +15,13 @@
 
     <form v-else @submit='signUp($event)'>
       <div class='sign-up-inputs'>
-        <Input class='email' v-model.trim='email' type='email' placeholder='E-mail' autocomplete='on'/>
+        <Input
+          class='email'
+          v-model.trim='email'
+          type='email'
+          placeholder='E-mail'
+          autocomplete='on'
+        />
 
         <Input
           class='firstName'
@@ -104,7 +110,6 @@ export default defineComponent({
     },
     async signUp(event: Event): Promise<void> {
       event.preventDefault();
-      console.log(this.firstName);
       this.verifyErrors();
 
       if (this.isLoading || this.errors.length) return;
