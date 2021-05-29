@@ -3,10 +3,12 @@
     <h1>My Wallet</h1>
 
     <ul v-if='errors.length' class='errors'>
-      <li v-for='error, index in errors' :key='index'>{{ error }}</li>
+      <li v-for='error, index in errors' :key='index'>
+        {{ error }}
+      </li>
     </ul>
 
-    <form v-if='showLoginForm'>
+    <form v-if='showLoginForm' @submit='signIn($event)'>
       <Input v-model='email' type='email' placeholder='E-mail' autocomplete='on'/>
       <Input v-model='password' type='password' placeholder='Senha' autocomplete='on'/>
 
@@ -126,6 +128,9 @@ export default defineComponent({
 
       this.isLoading = false;
       this.showLoginForm = true;
+    },
+    async signIn() {
+      console.log('sign in method');
     },
     verifyErrors(): void {
       this.errors = [];
