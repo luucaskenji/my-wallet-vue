@@ -24,7 +24,13 @@ export const createUserAccount = gql`
 
 export const signIn = gql`
   mutation createSession($input: SignInInput) {
-    user
-    token
+    createSession(input: $input) {
+      user {
+        id
+        firstName
+        lastName
+      }
+      token
+    }
   }
 `;
