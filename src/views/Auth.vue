@@ -69,7 +69,7 @@ export default defineComponent({
     switchFormType(): void {
       this.showLoginForm = !this.showLoginForm;
     },
-    async signUp(event: Event) {
+    async signUp(event: Event): Promise<void> {
       event.preventDefault();
 
       await this.$store.dispatch('SIGN_UP', {
@@ -79,6 +79,8 @@ export default defineComponent({
         password: this.password,
         passwordConfirmation: this.passwordConfirmation,
       });
+
+      this.showLoginForm = true;
     },
   },
 });
