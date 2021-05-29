@@ -8,7 +8,7 @@
       <button type='submit'>Entrar</button>
     </form>
 
-    <form v-else @submit="signUp()">
+    <form v-else @submit="signUp($event)">
       <div class="sign-up-inputs">
         <Input class="email" v-model='email' type='email' placeholder='E-mail'/>
         <Input class="firstName" v-model='firstName' type='text' placeholder='Primeiro nome'/>
@@ -69,8 +69,16 @@ export default defineComponent({
     switchFormType(): void {
       this.showLoginForm = !this.showLoginForm;
     },
-    signUp() {
-      console.log(this.email);
+    async signUp(event: Event) {
+      event.preventDefault();
+
+      await this.$store.dispatch('SIGN_UP', {
+        email: this.email,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        password: this.password,
+        passwordConfirmation: this.passwordConfirmation,
+      });
     },
   },
 });
