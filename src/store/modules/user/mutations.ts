@@ -1,7 +1,12 @@
 import { MutationTree } from 'vuex';
 import { UserInfo, UserState } from './state';
 
-const mutations: MutationTree<UserState> = {
+export enum UserMutations {
+  SET_USER = 'SET_USER',
+  SET_TOKEN = 'SET_TOKEN'
+}
+
+export const mutations: MutationTree<UserState> = {
   SET_USER(state, user: UserInfo) {
     state.user = user;
   },
@@ -9,5 +14,3 @@ const mutations: MutationTree<UserState> = {
     state.accessToken = token;
   },
 };
-
-export default mutations;

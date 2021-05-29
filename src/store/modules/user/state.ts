@@ -10,9 +10,7 @@ export interface UserState {
   accessToken: string;
 }
 
-const state: UserState = {
+export const state: UserState = {
   user: null,
   accessToken: '',
 };
-
-export default state;
