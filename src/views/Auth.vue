@@ -2,7 +2,7 @@
   <Container>
     <h1>My Wallet</h1>
 
-    <ul v-if='errors.length' class='errors'>
+    <ul v-if='errors.length' class='errors' @submit='signIn($event)'>
       <li v-for='error, index in errors' :key='index'>
         {{ error }}
       </li>
@@ -69,7 +69,9 @@
 
 <script lang='ts'>
 import { defineComponent } from 'vue';
+
 import { Container, Input } from '@/components';
+import { UserStoreActions } from '@/store/modules/user/actions';
 
 interface Data {
   showLoginForm: boolean;
@@ -118,7 +120,7 @@ export default defineComponent({
 
       this.isLoading = true;
 
-      await this.$store.dispatch('SIGN_UP', {
+      await this.$store.dispatch(UserStoreActions.SIGN_UP, {
         email: this.email,
         firstName: this.firstName,
         lastName: this.lastName,
@@ -129,8 +131,15 @@ export default defineComponent({
       this.isLoading = false;
       this.showLoginForm = true;
     },
-    async signIn() {
-      console.log('sign in method');
+    async signIn(event: Event): Promise<void> {
+      event.preventDefault();
+
+      await this.$store.dispatch(UserStoreActions.SIGN_IN, {
+        email: this.email,
+        password: this.password,
+      });
+
+      this.$router.push('/dashboard');
     },
     verifyErrors(): void {
       this.errors = [];

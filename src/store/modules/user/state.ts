@@ -1,9 +1,4 @@
-export interface UserInfo {
-  id: number;
-  firstName: string;
-  lastName: string;
-  email: string;
-}
+import { UserInfo } from '@/models/UserModel';
 
 export interface UserState {
   user: UserInfo | null;

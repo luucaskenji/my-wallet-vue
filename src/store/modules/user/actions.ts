@@ -9,7 +9,12 @@ import {
   UserInput,
 } from '@/utils/api/queries';
 import { UserState } from './state';
-import { UserMutations } from './mutations';
+import { UserStoreMutations } from './mutations';
+
+export enum UserStoreActions {
+  SIGN_UP = 'SIGN_UP',
+  SIGN_IN = 'SIGN_IN',
+}
 
 export const actions: ActionTree<UserState, RootState> = {
   async SIGN_UP(_, userData: UserInput) {
@@ -19,7 +24,7 @@ export const actions: ActionTree<UserState, RootState> = {
     const response = await APIMutation(signIn, { input: userData });
     const { user, token } = response.data.createSession;
 
-    commit(UserMutations.SET_USER, user);
-    commit(UserMutations.SET_TOKEN, token);
+    commit(UserStoreMutations.SET_USER, user);
+    commit(UserStoreMutations.SET_TOKEN, token);
   },
 };

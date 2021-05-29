@@ -1,7 +1,9 @@
 import { MutationTree } from 'vuex';
-import { UserInfo, UserState } from './state';
 
-export enum UserMutations {
+import { UserInfo } from '@/models/UserModel';
+import { UserState } from './state';
+
+export enum UserStoreMutations {
   SET_USER = 'SET_USER',
   SET_TOKEN = 'SET_TOKEN'
 }
