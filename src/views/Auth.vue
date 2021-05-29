@@ -42,6 +42,7 @@ interface Data {
   lastName: string;
   password: string;
   passwordConfirmation: string;
+  isLoading: boolean;
 }
 
 export default defineComponent({
@@ -58,6 +59,7 @@ export default defineComponent({
       lastName: '',
       password: '',
       passwordConfirmation: '',
+      isLoading: false,
     };
   },
   computed: {
@@ -72,6 +74,10 @@ export default defineComponent({
     async signUp(event: Event): Promise<void> {
       event.preventDefault();
 
+      if (this.isLoading) return;
+
+      this.isLoading = true;
+
       await this.$store.dispatch('SIGN_UP', {
         email: this.email,
         firstName: this.firstName,
@@ -80,6 +86,7 @@ export default defineComponent({
         passwordConfirmation: this.passwordConfirmation,
       });
 
+      this.isLoading = false;
       this.showLoginForm = true;
     },
   },
