@@ -2,28 +2,51 @@
   <Container>
     <h1>My Wallet</h1>
 
-    <ul class="errors">
-      <li>O nome precisa ser válido</li>
+    <ul v-if="errors.length" class="errors">
+      <li v-for="error, index in errors" :key="index">{{ error }}</li>
     </ul>
 
     <form v-if='showLoginForm'>
-      <Input v-model='email' type='email' placeholder='E-mail'/>
-      <Input v-model='password' type='password' placeholder='Senha'/>
+      <Input v-model='email' type='email' placeholder='E-mail' autocomplete="on"/>
+      <Input v-model='password' type='password' placeholder='Senha' autocomplete="on"/>
 
       <button type='submit'>Entrar</button>
     </form>
 
     <form v-else @submit="signUp($event)">
       <div class="sign-up-inputs">
-        <Input class="email" v-model='email' type='email' placeholder='E-mail'/>
-        <Input class="firstName" v-model='firstName' type='text' placeholder='Primeiro nome'/>
-        <Input class="lastName" v-model='lastName' type='text' placeholder='Último nome'/>
-        <Input class="password" v-model='password' type='password' placeholder='Senha'/>
+        <Input class="email" v-model='email' type='email' placeholder='E-mail' autocomplete="on"/>
+
+        <Input
+          class="firstName"
+          v-model='firstName'
+          type='text'
+          placeholder='Primeiro nome'
+          autocomplete="on"
+        />
+
+        <Input
+          class="lastName"
+          v-model='lastName'
+          type='text'
+          placeholder='Último nome'
+          autocomplete="on"
+         />
+
+        <Input
+          class="password"
+          v-model='password'
+          type='password'
+          placeholder='Senha'
+          autocomplete="on"
+        />
+
         <Input
           class="confirmPassword"
           v-model='passwordConfirmation'
           type='password'
           placeholder='Confirme sua senha'
+          autocomplete="on"
         />
       </div>
 
@@ -48,6 +71,7 @@ interface Data {
   password: string;
   passwordConfirmation: string;
   isLoading: boolean;
+  errors: string[];
 }
 
 export default defineComponent({
@@ -65,6 +89,7 @@ export default defineComponent({
       password: '',
       passwordConfirmation: '',
       isLoading: false,
+      errors: [],
     };
   },
   computed: {
@@ -74,12 +99,14 @@ export default defineComponent({
   },
   methods: {
     switchFormType(): void {
+      this.errors = [];
       this.showLoginForm = !this.showLoginForm;
     },
     async signUp(event: Event): Promise<void> {
       event.preventDefault();
+      this.verifyErrors();
 
-      if (this.isLoading) return;
+      if (this.isLoading || this.errors.length) return;
 
       this.isLoading = true;
 
@@ -93,6 +120,34 @@ export default defineComponent({
 
       this.isLoading = false;
       this.showLoginForm = true;
+    },
+    verifyErrors(): void {
+      this.errors = [];
+
+      const {
+        email,
+        firstName,
+        lastName,
+        password,
+        passwordConfirmation,
+        errors,
+      } = this;
+
+      if ([email, firstName, lastName, password, passwordConfirmation].some((e) => !e)) {
+        errors.push('Todos os campos são obrigatórios');
+      }
+
+      if ([firstName, lastName].some((n) => n.length > 15)) {
+        errors.push('Os nomes devem ter no máximo 15 caracteres');
+      }
+
+      if (password.length < 6 || password.length > 15) {
+        errors.push('A senha deve ter de 6 a 15 caracteres');
+      }
+
+      if (password !== passwordConfirmation) {
+        errors.push('As senhas devem ser iguais');
+      }
     },
   },
 });
@@ -108,17 +163,18 @@ export default defineComponent({
 
   .errors {
     width: 300px;
-    height: 150px;
+    height: fit-content;
     background: white;
     margin-bottom: 22px;
     border-radius: 7px;
     border: 2px solid red;
-    padding: 15px;
+    padding: 8px 15px;
   }
 
   .errors li {
     color: red;
     font-size: 0.5rem;
+    margin: 7px 0;
   }
 
   form {
