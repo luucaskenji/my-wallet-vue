@@ -1,11 +1,16 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
-import Auth from '../views/Auth.vue';
+import { Auth, Dashboard } from '../views';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
     name: 'Auth',
     component: Auth,
+  },
+  {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: Dashboard,
   },
 ];
 
