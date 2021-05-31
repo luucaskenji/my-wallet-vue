@@ -6,11 +6,13 @@ import {
   DocumentNode,
   InMemoryCache,
   NormalizedCacheObject,
+  HttpLink,
 } from '@apollo/client/core';
+import fetch from 'unfetch';
 
 const client = new ApolloClient<NormalizedCacheObject>({
   cache: new InMemoryCache(),
-  uri: 'http://localhost:4000/graphql',
+  link: new HttpLink({ uri: 'http://localhost:4000/graphql', fetch: fetch as any }),
 });
 
 export async function APIQuery(
