@@ -12,6 +12,7 @@
   "dependencies": {
     "@apollo/client": "^3.3.19",
     "core-js": "^3.6.5",
+    "unfetch": "^4.2.0",
     "vue": "^3.0.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
