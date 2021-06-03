@@ -16,6 +16,7 @@ export default defineComponent({
   div {
     width: 100%;
     min-height: 100vh;
+    padding: 20px 0;
     display: flex;
     flex-direction: column;
     justify-content: center;

@@ -10,6 +10,18 @@
     <div class="records">
       Não há registros
     </div>
+
+    <div class="buttons-container">
+      <button>
+        <img src="/assets/add-circle-outline.svg" />
+        Nova Entrada
+      </button>
+
+      <button>
+        <img src="/assets/remove-circle-outline.svg" />
+        Nova Saída
+      </button>
+    </div>
   </Container>
 </template>
 
@@ -49,7 +61,7 @@ header {
 }
 
 .records {
-  height: 80vh;
+  flex-grow: 1;
   width: 85%;
   background: white;
   border-radius: 5px;
@@ -57,5 +69,30 @@ header {
   justify-content: center;
   align-items: center;
   font-size: 1.3rem;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: space-between;
+  width: 85%;
+  margin-top: 20px;
+}
+
+button {
+  width: 140px;
+  height: 130px;
+  background: var(--lightPurple);
+  border-radius: 8px;
+  color: white;
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0 10px;
+}
+
+button img {
+  width: 30px;
+  margin-bottom: 20px;
 }
 </style>
