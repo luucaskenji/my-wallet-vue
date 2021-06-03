@@ -7,10 +7,11 @@
   --purple: #8C11BE;
   --lightPurple: #A328D6;
   --auth-forms-width: 300px;
+  --font-family: 'Teko', sans-serif;
 }
 
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
+  font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: #2c3e50;

@@ -176,7 +176,7 @@ export default defineComponent({
 <style scoped>
   h1 {
     color: white;
-    font-family: 'Teko', sans-serif;
+    font-family: var(--font-family);
     font-size: 1.8rem;
     margin-bottom: 22px;
   }
@@ -192,8 +192,8 @@ export default defineComponent({
   }
 
   .errors li {
+    font-size: 0.6rem;
     color: red;
-    font-size: 0.5rem;
     margin: 7px 0;
   }
 
