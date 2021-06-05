@@ -29,7 +29,7 @@
 import { defineComponent } from 'vue';
 
 import { Container } from '@/components';
-import { UserModel } from '@/models/UserModel';
+import { UserModel } from '@/models';
 
 interface Data {}
 

@@ -1,6 +1,6 @@
 import { MutationTree } from 'vuex';
 
-import { UserInfo } from '@/models/UserModel';
+import { UserInfo } from '@/models';
 import { UserState } from './state';
 
 export enum UserStoreMutations {
