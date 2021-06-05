@@ -34,3 +34,13 @@ export const signIn = gql`
     }
   }
 `;
+
+export const getFinances = gql`
+  query getFinances {
+    getFinances {
+      id
+      value
+      description
+    }
+  }
+`;
