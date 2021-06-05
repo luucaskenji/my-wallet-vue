@@ -79,20 +79,21 @@ header {
 }
 
 button {
-  width: 140px;
+  width: 126px;
   height: 130px;
   background: var(--lightPurple);
   border-radius: 8px;
   color: white;
-  font-size: 1.1rem;
+  font-size: 0.9rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 0 10px;
+  cursor: pointer;
 }
 
 button img {
-  width: 30px;
+  width: 25px;
   margin-bottom: 20px;
 }
 </style>
