@@ -12,7 +12,7 @@
       <Input v-model='email' type='email' placeholder='E-mail' autocomplete='on'/>
       <Input v-model='password' type='password' placeholder='Senha' autocomplete='on'/>
 
-      <button type='submit'>Entrar</button>
+      <Button type='submit' innerText='Entrar' @click='signIn($event)' />
     </form>
 
     <form v-else @submit='signUp($event)'>
@@ -58,7 +58,7 @@
         />
       </div>
 
-      <button type='submit'>Criar conta</button>
+      <Button type='submit' innerText='Criar conta' @click='signUp($event)' />
     </form>
 
     <span @click='switchFormType()'>
@@ -70,7 +70,7 @@
 <script lang='ts'>
 import { defineComponent } from 'vue';
 
-import { Container, Input } from '@/components';
+import { Container, Input, Button } from '@/components';
 import { UserStoreActions } from '@/store/modules/user/actions';
 
 interface Data {
@@ -89,6 +89,7 @@ export default defineComponent({
   components: {
     Container,
     Input,
+    Button,
   },
   data(): Data {
     return {
@@ -218,16 +219,6 @@ export default defineComponent({
   .lastName { grid-area: input3; }
   .password { grid-area: input4; }
   .confirmPassword { grid-area: input5; }
-
-  button {
-    color: white;
-    height: 60px;
-    background: var(--lightPurple);
-    border-radius: 6px;
-    font-size: 1rem;
-    cursor: pointer;
-    margin-bottom: 15px;
-  }
 
   span {
     color: white;
