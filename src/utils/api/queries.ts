@@ -14,6 +14,12 @@ export type SignInInput = {
   password: string;
 }
 
+export type FinanceInput = {
+  value: string;
+  description: string;
+  type: string;
+}
+
 export const createUserAccount = gql`
   mutation createUser($input: UserInput!) {
     createUser(input: $input) {
@@ -41,6 +47,17 @@ export const getFinances = gql`
       id
       value
       description
+    }
+  }
+`;
+
+export const createFinance = gql`
+  mutation createFinance($input: FinanceInput) {
+    crateFinance(input: $input) {
+      id
+      value
+      description
+      type
     }
   }
 `;
