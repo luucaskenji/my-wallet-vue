@@ -1,5 +1,5 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router';
-import { Auth, Dashboard } from '../views';
+import { Auth, Dashboard, Transaction } from '../views';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -11,6 +11,11 @@ const routes: Array<RouteRecordRaw> = [
     path: '/dashboard',
     name: 'Dashboard',
     component: Dashboard,
+  },
+  {
+    path: '/transacao',
+    name: 'Transaction',
+    component: Transaction,
   },
 ];
 
