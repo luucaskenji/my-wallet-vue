@@ -17,7 +17,7 @@ export type SignInInput = {
 export type FinanceInput = {
   value: string;
   description: string;
-  type: string;
+  type: 'INCOME' | 'EXPENSE';
 }
 
 export const createUserAccount = gql`
@@ -53,7 +53,7 @@ export const getFinances = gql`
 
 export const createFinance = gql`
   mutation createFinance($input: FinanceInput) {
-    crateFinance(input: $input) {
+    createFinance(input: $input) {
       id
       value
       description
