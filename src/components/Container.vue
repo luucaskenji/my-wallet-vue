@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div :style='cssProps'>
     <slot></slot>
   </div>
 </template>
@@ -9,6 +9,24 @@ import { defineComponent } from 'vue';
 
 export default defineComponent({
   name: 'Container',
+  props: {
+    justifyContent: {
+      type: String,
+      default: 'center',
+    },
+    alignItems: {
+      type: String,
+      default: 'center',
+    },
+  },
+  computed: {
+    cssProps(): { [key: string]: string } {
+      return {
+        '--justify-content': this.justifyContent,
+        '--align-items': this.alignItems,
+      };
+    },
+  },
 });
 </script>
 
@@ -19,7 +37,7 @@ export default defineComponent({
     padding: 20px 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
   }
 </style>
