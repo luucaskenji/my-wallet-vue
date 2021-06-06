@@ -21,6 +21,7 @@ import { Container, Input, Button } from '@/components';
 interface Data {
   value: string;
   description: string;
+  errors: string[];
 }
 
 export default defineComponent({
@@ -33,6 +34,7 @@ export default defineComponent({
     return {
       value: '',
       description: '',
+      errors: [],
     };
   },
   computed: {
@@ -55,9 +57,31 @@ export default defineComponent({
   methods: {
     handleSubmit(e: Event) {
       e.preventDefault();
+      this.verifyErrors();
+
+      if (this.errors.length) return;
 
       console.log(this.value);
       console.log(this.description);
+    },
+    verifyErrors() {
+      this.errors = [];
+
+      if (!this.value.includes(',')) {
+        this.errors.push('Insira o valor separado por vírgula');
+      }
+
+      if (this.value.includes('R$')) {
+        this.errors.push('Insira o valor sem incluir R$');
+      }
+
+      if (this.value.split(',')[1].length !== 2) {
+        this.errors.push('Insira o valor informando o valor dos centavos');
+      }
+
+      if (!this.value.match(/^[0-9]+,{1}[0-9]{2}$/)) {
+        this.errors.push('Insira apenas valores numéricos');
+      }
     },
   },
 });
