@@ -30,6 +30,7 @@ import { defineComponent } from 'vue';
 
 import { Container } from '@/components';
 import { UserModel } from '@/models';
+import { FinanceStoreActions } from '@/store/modules/finances/actions';
 
 interface Data {}
 
@@ -45,6 +46,9 @@ export default defineComponent({
     user(): UserModel {
       return this.$store.getters.user || {};
     },
+  },
+  async mounted() {
+    await this.$store.dispatch(FinanceStoreActions.GET_FINANCES);
   },
 });
 </script>
