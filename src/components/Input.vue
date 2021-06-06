@@ -24,7 +24,7 @@ export default defineComponent({
 <style scoped>
   input {
     width: 100%;
-    height: 60px;
+    height: 50px;
     margin-bottom: 10px;
     font-size: 1rem;
     border-radius: 6px;

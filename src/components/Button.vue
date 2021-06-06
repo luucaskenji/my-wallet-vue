@@ -1,5 +1,5 @@
 <template>
-  <button :type="type">
+  <button :type='type'>
     {{ innerText }}
   </button>
 </template>
@@ -18,7 +18,8 @@ export default defineComponent({
 <style scoped>
   button {
     color: white;
-    height: 60px;
+    width: 100%;
+    height: 50px;
     background: var(--lightPurple);
     border-radius: 6px;
     font-size: 1rem;
