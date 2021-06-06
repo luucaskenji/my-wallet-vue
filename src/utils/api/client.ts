@@ -28,9 +28,7 @@ export async function APIQuery(
   query: DocumentNode,
   variables?: { [key: string]: any },
 ): Promise<any> {
-  const a = getApolloClient();
-
-  return a.query({
+  return getApolloClient().query({
     query,
     variables,
   });
