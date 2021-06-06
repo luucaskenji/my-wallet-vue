@@ -1,12 +1,12 @@
 <template>
   <Container justifyContent='flex-start'>
-    <form>
+    <form @submit='handleSubmit($event)'>
       <div class="title">
         {{ formData.title[transactionType] }}
       </div>
 
-      <Input type='text' placeholder='Valor'/>
-      <Input type='text' placeholder='Descrição'/>
+      <Input v-model.trim='value' type='text' placeholder='Valor'/>
+      <Input v-model.trim='description' type='text' placeholder='Descrição'/>
 
       <Button type='submit' :innerText='formData.buttonText[transactionType]'/>
     </form>
@@ -18,7 +18,10 @@ import { defineComponent } from 'vue';
 
 import { Container, Input, Button } from '@/components';
 
-interface Data {}
+interface Data {
+  value: string;
+  description: string;
+}
 
 export default defineComponent({
   components: {
@@ -27,7 +30,10 @@ export default defineComponent({
     Button,
   },
   data(): Data {
-    return {};
+    return {
+      value: '',
+      description: '',
+    };
   },
   computed: {
     transactionType(): string {
@@ -44,6 +50,14 @@ export default defineComponent({
           saida: 'Salvar saída',
         },
       };
+    },
+  },
+  methods: {
+    handleSubmit(e: Event) {
+      e.preventDefault();
+
+      console.log(this.value);
+      console.log(this.description);
     },
   },
 });
