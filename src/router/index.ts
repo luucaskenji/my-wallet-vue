@@ -13,7 +13,7 @@ const routes: Array<RouteRecordRaw> = [
     component: Dashboard,
   },
   {
-    path: '/transacao',
+    path: '/transacao/:transactionType',
     name: 'Transaction',
     component: Transaction,
   },
