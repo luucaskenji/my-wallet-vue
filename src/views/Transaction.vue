@@ -17,6 +17,7 @@
 import { defineComponent } from 'vue';
 
 import { Container, Input, Button } from '@/components';
+import { FinanceStoreActions } from '@/store/modules/finances/actions';
 
 interface Data {
   value: string;
@@ -55,17 +56,27 @@ export default defineComponent({
     },
   },
   methods: {
-    handleSubmit(e: Event) {
+    async handleSubmit(e: Event): Promise<void> {
       e.preventDefault();
       this.verifyErrors();
 
+      console.log(this.errors);
+
       if (this.errors.length) return;
 
-      console.log(this.value);
-      console.log(this.description);
+      await this.$store.dispatch(FinanceStoreActions.CREATE_FINANCE, {
+        value: this.value,
+        description: this.description,
+        type: this.transactionType === 'entrada' ? 'INCOME' : 'EXPENSE',
+      });
     },
-    verifyErrors() {
+    verifyErrors(): void {
       this.errors = [];
+
+      if (!this.value) {
+        this.errors.push('Insira um valor');
+        return;
+      }
 
       if (!this.value.includes(',')) {
         this.errors.push('Insira o valor separado por vírgula');
