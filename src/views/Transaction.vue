@@ -60,8 +60,6 @@ export default defineComponent({
       e.preventDefault();
       this.verifyErrors();
 
-      console.log(this.errors);
-
       if (this.errors.length) return;
 
       await this.$store.dispatch(FinanceStoreActions.CREATE_FINANCE, {
