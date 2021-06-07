@@ -12,14 +12,14 @@ export enum FinanceStoreActions {
 
 export const actions: ActionTree<FinanceState, RootState> = {
   async GET_FINANCES() {
-    const response = await APIQuery(getFinances) as any;
+    const response = await APIQuery(getFinances);
 
     const finances = response.data.getFinances;
 
     console.log(finances);
   },
   async CREATE_FINANCE(_, finance: FinanceInput) {
-    const response = await APIMutation(createFinance, finance);
+    const response = await APIMutation(createFinance, { input: finance });
 
     const newFinance = response.data.createFinance;
 

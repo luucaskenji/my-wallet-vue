@@ -13,13 +13,17 @@
 
     <div class="buttons-container">
       <button>
-        <img src="/assets/add-circle-outline.svg" />
-        Nova Entrada
+        <router-link to='/transacao/entrada'>
+          <img src="/assets/add-circle-outline.svg" />
+          Nova Entrada
+        </router-link>
       </button>
 
       <button>
-        <img src="/assets/remove-circle-outline.svg" />
-        Nova Saída
+        <router-link to='/transacao/saida'>
+          <img src="/assets/remove-circle-outline.svg" />
+          Nova Saída
+        </router-link>
       </button>
     </div>
   </Container>
@@ -89,11 +93,15 @@ button {
   border-radius: 8px;
   color: white;
   font-size: 0.9rem;
+  text-align: start;
+  padding: 0 10px;
+  cursor: pointer;
+}
+
+a {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 0 10px;
-  cursor: pointer;
 }
 
 button img {

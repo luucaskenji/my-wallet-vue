@@ -77,6 +77,10 @@ button, button:active {
   outline: none;
   border: none;
 }
+a {
+  text-decoration: none;
+  color: inherit;
+}
 html {
   font-size: 28px;
 }
