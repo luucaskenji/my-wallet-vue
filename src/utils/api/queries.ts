@@ -47,6 +47,7 @@ export const getFinances = gql`
       id
       value
       description
+      type
     }
   }
 `;
