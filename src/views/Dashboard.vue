@@ -33,7 +33,7 @@
 import { defineComponent } from 'vue';
 
 import { Container } from '@/components';
-import { UserModel } from '@/models';
+import { UserModel, FinanceModel } from '@/models';
 import { FinanceStoreActions } from '@/store/modules/finances/actions';
 
 interface Data {}
@@ -49,6 +49,9 @@ export default defineComponent({
   computed: {
     user(): UserModel {
       return this.$store.getters.user || {};
+    },
+    finances(): FinanceModel[] {
+      return this.$store.getters.finances;
     },
   },
   async mounted() {

@@ -13,6 +13,8 @@ export const mutations: MutationTree<UserState> = {
     state.user = user;
   },
   SET_TOKEN(state, token: string) {
+    if (!token) return;
+
     state.accessToken = token;
     localStorage.setItem('accessToken', token);
   },

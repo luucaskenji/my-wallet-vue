@@ -9,6 +9,8 @@ export enum FinanceStoreMutations {
 
 export const mutations: MutationTree<FinanceState> = {
   SET_FINANCES(state, finances: FinanceInfo[]) {
+    if (!finances) return;
+
     finances.forEach((finance) => {
       state.finances[finance.id.toString()] = finance;
     });
