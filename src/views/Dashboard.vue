@@ -7,9 +7,9 @@
       <img src="/assets/sign-out.svg" />
     </header>
 
-    <div class="records">
+    <ul class="records">
       Não há registros
-    </div>
+    </ul>
 
     <div class="buttons-container">
       <button>
