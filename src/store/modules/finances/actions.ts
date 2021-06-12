@@ -11,12 +11,12 @@ export enum FinanceStoreActions {
 }
 
 export const actions: ActionTree<FinanceState, RootState> = {
-  async GET_FINANCES() {
+  async GET_FINANCES({ commit }) {
     const response = await APIQuery(getFinances);
 
     const finances = response.data.getFinances;
 
-    console.log(finances);
+    commit('SET_FINANCES', finances);
   },
   async CREATE_FINANCE(_, finance: FinanceInput) {
     const response = await APIMutation(createFinance, { input: finance });

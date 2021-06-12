@@ -1,7 +1,7 @@
-import { FinanceModel } from '@/models';
+import { FinanceInfo } from '@/models';
 
 export interface FinanceState {
-  finances: { [key: string]: FinanceModel }
+  finances: { [key: string]: FinanceInfo }
 }
 
 export const state: FinanceState = {
