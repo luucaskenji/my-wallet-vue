@@ -7,9 +7,18 @@
       <img src="/assets/sign-out.svg" />
     </header>
 
-    <ul class="records">
-      Não há registros
-    </ul>
+    <div class="records">
+      <div v-for='finance in finances' :key='finance.id'>
+        <div class="record">
+          <span>{{ finance.description }}</span>
+          <span
+            :class='{ income: finance.type === "INCOME", expense: finance.type === "EXPENSE" }'
+          >
+            {{ finance.value }}
+          </span>
+        </div>
+      </div>
+    </div>
 
     <div class="buttons-container">
       <button>
@@ -72,15 +81,21 @@ header {
 }
 
 .records {
+  padding: 15px;
   flex-grow: 1;
   width: 85%;
   background: white;
   border-radius: 5px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 }
+
+.record {
+  display: flex;
+  justify-content: space-between;
+}
+
+.income { color: green; }
+.expense { color: red; }
 
 .buttons-container {
   display: flex;
