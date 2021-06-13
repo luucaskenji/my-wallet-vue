@@ -18,6 +18,11 @@
           </span>
         </div>
       </div>
+
+      <div>
+        <span>Saldo</span>
+        <span>{{ financesBalance }}</span>
+      </div>
     </div>
 
     <div class="buttons-container">
@@ -61,6 +66,17 @@ export default defineComponent({
     },
     finances(): FinanceModel[] {
       return this.$store.getters.finances;
+    },
+    financesBalance(): string {
+      return this.finances
+        .reduce((acc, finance) => {
+          const convertedValue = finance.type === 'INCOME'
+            ? parseFloat(finance.value)
+            : parseFloat(finance.value) * (-1);
+
+          return acc + convertedValue;
+        }, 0)
+        .toString();
     },
   },
   async mounted() {
