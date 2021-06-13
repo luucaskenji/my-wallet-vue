@@ -67,6 +67,8 @@ export default defineComponent({
         description: this.description,
         type: this.transactionType === 'entrada' ? 'INCOME' : 'EXPENSE',
       });
+
+      this.$router.push('/dashboard');
     },
     verifyErrors(): void {
       this.errors = [];
