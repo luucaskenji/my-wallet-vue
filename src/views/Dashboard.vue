@@ -110,8 +110,9 @@ header {
 }
 
 .records {
-  padding: 15px;
-  flex-grow: 1;
+  overflow: scroll;
+  padding: 8px 8px 0 8px;
+  max-height: 55vh;
   width: 85%;
   background: white;
   border-radius: 5px;
@@ -135,9 +136,13 @@ header {
 }
 
 .balance {
-  width: 89%;
-  position: absolute;
-  bottom: 5px;
+  width: 100%;
+  background: white;
+  position: sticky;
+  bottom: 0;
+  height: 40px;
+  display: flex;
+  align-items: center;
 }
 
 .income { color: green; }
