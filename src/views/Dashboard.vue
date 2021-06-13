@@ -4,12 +4,12 @@
       <div>
         <span>{{ `Olá, ${user.firstName} ${user.lastName}` }}</span>
       </div>
-      <img src="/assets/sign-out.svg" />
+      <img src='/assets/sign-out.svg' />
     </header>
 
-    <div class="records">
+    <div class='records'>
       <div v-for='finance in finances' :key='finance.id'>
-        <div class="record">
+        <div class='record'>
           <span>{{ finance.description }}</span>
           <span
             :class='{ income: finance.type === "INCOME", expense: finance.type === "EXPENSE" }'
@@ -19,23 +19,30 @@
         </div>
       </div>
 
-      <div>
+      <div class='balance record'>
         <span>Saldo</span>
-        <span>{{ financesBalance }}</span>
+        <span
+          :class='{
+            income: parseFloat(financesBalance) > 0,
+            expense: parseFloat(financesBalance) < 0
+          }'
+        >
+          {{ financesBalance }}
+        </span>
       </div>
     </div>
 
-    <div class="buttons-container">
+    <div class='buttons-container'>
       <button>
         <router-link to='/transacao/entrada'>
-          <img src="/assets/add-circle-outline.svg" />
+          <img src='/assets/add-circle-outline.svg' />
           Nova Entrada
         </router-link>
       </button>
 
       <button>
         <router-link to='/transacao/saida'>
-          <img src="/assets/remove-circle-outline.svg" />
+          <img src='/assets/remove-circle-outline.svg' />
           Nova Saída
         </router-link>
       </button>
@@ -76,7 +83,8 @@ export default defineComponent({
 
           return acc + convertedValue;
         }, 0)
-        .toString();
+        .toFixed(2)
+        .replace('.', ',');
     },
   },
   async mounted() {
@@ -103,11 +111,18 @@ header {
   background: white;
   border-radius: 5px;
   font-size: 1.1rem;
+  position: relative;
 }
 
 .record {
   display: flex;
   justify-content: space-between;
+}
+
+.balance {
+  width: 89%;
+  position: absolute;
+  bottom: 5px;
 }
 
 .income { color: green; }
