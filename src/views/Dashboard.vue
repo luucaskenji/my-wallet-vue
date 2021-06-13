@@ -7,28 +7,33 @@
       <img src='/assets/sign-out.svg' />
     </header>
 
-    <div class='records'>
-      <div v-for='finance in finances' :key='finance.id'>
-        <div class='record'>
-          <span>{{ finance.description }}</span>
+    <div class='records' :class='{ "empty-box": !finances.length }'>
+      <div v-if='finances.length'>
+        <div v-for='finance in finances' :key='finance.id'>
+          <div class='record'>
+            <span>{{ finance.description }}</span>
+            <span
+              :class='{ income: finance.type === "INCOME", expense: finance.type === "EXPENSE" }'
+            >
+              {{ finance.value }}
+            </span>
+          </div>
+        </div>
+        <div class='balance record'>
+          <span>Saldo</span>
           <span
-            :class='{ income: finance.type === "INCOME", expense: finance.type === "EXPENSE" }'
+            :class='{
+              income: parseFloat(financesBalance) > 0,
+              expense: parseFloat(financesBalance) < 0
+            }'
           >
-            {{ finance.value }}
+            {{ financesBalance }}
           </span>
         </div>
       </div>
 
-      <div class='balance record'>
-        <span>Saldo</span>
-        <span
-          :class='{
-            income: parseFloat(financesBalance) > 0,
-            expense: parseFloat(financesBalance) < 0
-          }'
-        >
-          {{ financesBalance }}
-        </span>
+      <div class='empty-box-message' v-else>
+        Não há registro de entradas ou saídas
       </div>
     </div>
 
@@ -112,6 +117,16 @@ header {
   border-radius: 5px;
   font-size: 1.1rem;
   position: relative;
+}
+
+.empty-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.empty-box-message {
+  text-align: center;
 }
 
 .record {
