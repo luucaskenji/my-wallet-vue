@@ -19,10 +19,6 @@ export const actions: ActionTree<FinanceState, RootState> = {
     commit('SET_FINANCES', finances);
   },
   async CREATE_FINANCE(_, finance: FinanceInput) {
-    const response = await APIMutation(createFinance, { input: finance });
-
-    const newFinance = response.data.createFinance;
-
-    console.log(newFinance);
+    await APIMutation(createFinance, { input: finance });
   },
 };
