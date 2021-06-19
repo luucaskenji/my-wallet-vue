@@ -1,4 +1,5 @@
 import { actions } from '@/store/modules/finances/actions';
+import { FinanceStoreMutations } from '@/store/modules/finances/mutations';
 import * as clientConnection from '@/utils/api/client';
 import { createFinance, FinanceInput, getFinances } from '@/utils/api/queries';
 import { defaultFinanceInfo } from '../../../mockedEntities';
@@ -24,7 +25,10 @@ describe('finances module actions', () => {
       await GET_FINANCES({ commit });
 
       expect(clientConnection.APIQuery).toHaveBeenCalledWith(getFinances);
-      expect(commit).toHaveBeenCalledWith('SET_FINANCES', APIResponse.data.getFinances);
+      expect(commit).toHaveBeenCalledWith(
+        FinanceStoreMutations.SET_FINANCES,
+        APIResponse.data.getFinances,
+      );
     });
 
     it('early returns if API response does not come as expected', async () => {
