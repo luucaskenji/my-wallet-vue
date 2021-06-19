@@ -13,6 +13,7 @@ export enum FinanceStoreActions {
 export const actions: ActionTree<FinanceState, RootState> = {
   async GET_FINANCES({ commit }) {
     const response = await APIQuery(getFinances);
+    if (!response?.data?.getFinances) return;
 
     const finances = response.data.getFinances;
 
