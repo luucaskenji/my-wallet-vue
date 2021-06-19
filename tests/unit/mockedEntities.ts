@@ -1,4 +1,9 @@
-import { UserInfo, UserModel } from '@/models/UserModel';
+import {
+  FinanceInfo,
+  FinanceModel,
+  UserInfo,
+  UserModel,
+} from '@/models';
 
 export const defaultUserInfo = (): UserInfo => ({
   id: 1,
@@ -9,4 +14,15 @@ export const defaultUserInfo = (): UserInfo => ({
 
 export const defaultUserModel = (): UserModel => (
   new UserModel(defaultUserInfo(), 'token')
+);
+
+export const defaultFinanceInfo = (): FinanceInfo => ({
+  id: 1,
+  value: '12,60',
+  description: 'test',
+  type: 'INCOME',
+});
+
+export const defaultFinanceModel = (): FinanceModel => (
+  new FinanceModel(defaultFinanceInfo())
 );
