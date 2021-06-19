@@ -4,7 +4,7 @@ import {
 import { actions } from '@/store/modules/user/actions';
 import * as clientConnection from '@/utils/api/client';
 import { UserStoreMutations } from '@/store/modules/user/mutations';
-import { defaultUserModel } from '../../../mockedEntities';
+import { defaultUserInfo } from '../../../mockedEntities';
 
 const { SIGN_UP, SIGN_IN, SIGN_OUT } = actions as any;
 
@@ -40,8 +40,8 @@ describe('user module actions', () => {
         email: 'test@test.com',
         password: 'test123456',
       };
-      const user = defaultUserModel();
-      const token = user.accessToken;
+      const user = defaultUserInfo();
+      const token = 'token';
       const commit = jest.fn();
 
       jest.spyOn(clientConnection, 'APIMutation').mockResolvedValueOnce({
@@ -61,9 +61,14 @@ describe('user module actions', () => {
     });
 
     it('early returns if API response does not come as expected', async () => {
+      const userData: SignInInput = {
+        email: 'test@test.com',
+        password: 'test123456',
+      };
       const commit = jest.fn();
-
       jest.spyOn(clientConnection, 'APIMutation').mockResolvedValueOnce({ data: null });
+
+      await SIGN_IN({ commit }, userData);
 
       expect(commit).not.toHaveBeenCalled();
     });
