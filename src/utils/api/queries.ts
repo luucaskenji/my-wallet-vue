@@ -62,3 +62,9 @@ export const createFinance = gql`
     }
   }
 `;
+
+export const signOut = gql`
+  mutation deleteSession {
+    deleteSession
+  }
+`;

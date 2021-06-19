@@ -5,7 +5,8 @@ import { UserState } from './state';
 
 export enum UserStoreMutations {
   SET_USER = 'SET_USER',
-  SET_TOKEN = 'SET_TOKEN'
+  SET_TOKEN = 'SET_TOKEN',
+  CLEAN_USER_STATE = 'CLEAN_USER_STATE'
 }
 
 export const mutations: MutationTree<UserState> = {
@@ -17,5 +18,10 @@ export const mutations: MutationTree<UserState> = {
 
     state.accessToken = token;
     localStorage.setItem('accessToken', token);
+  },
+  CLEAN_USER_STATE(state) {
+    state.user = null;
+    state.accessToken = '';
+    localStorage.removeItem('accessToken');
   },
 };
