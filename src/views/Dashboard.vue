@@ -4,7 +4,10 @@
       <div>
         <span>{{ `Olá, ${user.firstName} ${user.lastName}` }}</span>
       </div>
-      <img src='/assets/sign-out.svg' />
+
+      <div @click='signOut()'>
+        <img src='/assets/sign-out.svg' />
+      </div>
     </header>
 
     <div class='records' :class='{ "empty-box": !finances.length }'>
@@ -61,6 +64,7 @@ import { defineComponent } from 'vue';
 import { Container } from '@/components';
 import { UserModel, FinanceModel } from '@/models';
 import { FinanceStoreActions } from '@/store/modules/finances/actions';
+import { UserStoreActions } from '@/store/modules/user/actions';
 
 interface Data {}
 
@@ -94,6 +98,13 @@ export default defineComponent({
   },
   async mounted() {
     await this.$store.dispatch(FinanceStoreActions.GET_FINANCES);
+  },
+  methods: {
+    async signOut(): Promise<void> {
+      await this.$store.dispatch(UserStoreActions.SIGN_OUT);
+
+      this.$router.push('/');
+    },
   },
 });
 </script>
