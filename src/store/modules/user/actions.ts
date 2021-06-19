@@ -24,6 +24,9 @@ export const actions: ActionTree<UserState, RootState> = {
   },
   async SIGN_IN({ commit }, userData: SignInInput): Promise<void> {
     const response = await APIMutation(signIn, { input: userData });
+
+    if (!response?.data?.createSession) return;
+
     const { user, token } = response.data.createSession;
 
     commit(UserStoreMutations.SET_USER, user);
