@@ -66,15 +66,10 @@ import { UserModel, FinanceModel } from '@/models';
 import { FinanceStoreActions } from '@/store/modules/finances/actions';
 import { UserStoreActions } from '@/store/modules/user/actions';
 
-interface Data {}
-
 export default defineComponent({
   name: 'Dashboard',
   components: {
     Container,
-  },
-  data(): Data {
-    return {};
   },
   computed: {
     user(): UserModel {
