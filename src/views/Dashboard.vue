@@ -22,7 +22,7 @@
             </span>
           </div>
         </div>
-        <div class='balance record'>
+        <div class='balance'>
           <span>Saldo</span>
           <span
             :class='{
@@ -153,6 +153,7 @@ header {
   bottom: 0;
   height: 40px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
