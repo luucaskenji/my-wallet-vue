@@ -80,14 +80,12 @@ export default defineComponent({
 
       if (!this.value.includes(',')) {
         this.errors.push('Insira o valor separado por vírgula');
+      } else if (this.value.split(',')[1].length !== 2) {
+        this.errors.push('Insira o valor informando o valor dos centavos');
       }
 
       if (this.value.includes('R$')) {
         this.errors.push('Insira o valor sem incluir R$');
-      }
-
-      if (this.value.split(',')[1].length !== 2) {
-        this.errors.push('Insira o valor informando o valor dos centavos');
       }
 
       if (!this.value.match(/^[0-9]+,{1}[0-9]{2}$/)) {
