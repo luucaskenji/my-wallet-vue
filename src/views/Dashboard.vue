@@ -117,6 +117,7 @@ header {
 }
 
 .records {
+  flex-grow: 1;
   overflow: scroll;
   padding: 8px 8px 0 8px;
   max-height: 55vh;
