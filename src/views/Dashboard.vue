@@ -81,9 +81,10 @@ export default defineComponent({
     financesBalance(): string {
       return this.finances
         .reduce((acc, finance) => {
+          const financeValue = finance.value.replace(',', '.');
           const convertedValue = finance.type === 'INCOME'
-            ? parseFloat(finance.value)
-            : parseFloat(finance.value) * (-1);
+            ? parseFloat(financeValue)
+            : parseFloat(financeValue) * (-1);
 
           return acc + convertedValue;
         }, 0)
