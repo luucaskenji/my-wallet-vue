@@ -45,12 +45,10 @@ export default defineComponent({
     formData(): { [key: string]: { [key: string]: string } } {
       return {
         title: {
-          entrada: 'Nova entrada',
-          saida: 'Nova saída',
+          [this.transactionType]: `Nova ${this.transactionType}`,
         },
         buttonText: {
-          entrada: 'Salvar entrada',
-          saida: 'Salvar saída',
+          [this.transactionType]: `Salvar ${this.transactionType}`,
         },
       };
     },
